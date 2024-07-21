@@ -37,7 +37,7 @@ Config.stations = {
 }
 
 function Dispatch(type)
-    if Config.Dispatch == "qs" then
+    if Config.dispatch == "qs" then
         local playerData = exports['qs-dispatch']:GetPlayerInfo()
         TriggerServerEvent('qs-dispatch:server:CreateDispatchCall', {
             job = Config.police,
@@ -54,11 +54,11 @@ function Dispatch(type)
                 time = (20 * 1000),
             }
         })
-    elseif Config.Dispatch == "ps" then
+    elseif Config.dispatch == "ps" then
         exports["ps-dispatch"]:CustomAlert({
             coords = GetEntityCoords(PlayerPedId()),
             message = Config.stations[type].name.." Robbery",
-            dispatchCode = "10-90",
+            dispatchCode = "10-15",
             description = Config.stations[type].name.." Robbery In Progress",
             radius = 0,
             sprite = 311,
@@ -66,12 +66,12 @@ function Dispatch(type)
             scale = 1.5,
             length = 2,
         })
-    elseif Config.Dispatch == "cd" then
+    elseif Config.dispatch == "cd" then
         local data = exports['cd_dispatch']:GetPlayerInfo()
         TriggerServerEvent('cd_dispatch:AddNotification', {
             job_table = Config.police,
             coords = data.coords,
-            title = '10-90 - '..Config.stations[type].name..' Robbery',
+            title = '10-15 - '..Config.stations[type].name..' Robbery',
             message = 'An anonymous caller has reported a ' .. data.sex .. ' robbing a '..Config.stations[type].name..' at ' .. data.street,
             flash = 0,
             unique_id = data.unique_id,

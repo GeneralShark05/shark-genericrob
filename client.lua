@@ -41,7 +41,7 @@ AddEventHandler('shark-genericrob:client:startTheft', function(type, data)
                 Wait(robType.coodlown)
                 cooldownList[type] = false
             end)
-            if robType.dispatch then
+            if robType.callPolice then
                 Dispatch(type)
             end
         end
