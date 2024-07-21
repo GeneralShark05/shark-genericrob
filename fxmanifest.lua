@@ -4,8 +4,8 @@ games { 'gta5' }
 lua54 'yes'
 
 author 'General Shark'
-description 'Get yourself a nice cup of coffee.'
-version '1.5'
+description 'Go steal.'
+version '1.0'
 
 dependencies { 'ox_lib', 'ox_target', 'ox_inventory'}
 
