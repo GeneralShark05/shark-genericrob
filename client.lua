@@ -21,7 +21,13 @@ RegisterNetEvent('shark-genericrob:client:startTheft')
 AddEventHandler('shark-genericrob:client:startTheft', function(type, data)
     local robType = Config.stations[type]
     if cooldownList[type] == nil then
-        local success = lib.skillCheck(robType.difficulty, {'w','a','s','d'})
+        local success = false
+        if robType.minigame then
+            success = Minigame(robType.minigame, robType.difficulty)
+        else
+            success = true
+        end
+        print(success)
         if success then
             lib.progressBar({
                 duration = 3000,
@@ -36,13 +42,15 @@ AddEventHandler('shark-genericrob:client:startTheft', function(type, data)
                     clip = 'car_bomb_mechanic'
                 }
             })
-            TriggerServerEvent('shark-genericrob:server:reward', type)
+            TriggerServerEvent('shark-genericrob:server:reward', type, data.coords)
             Citizen.CreateThread(function()
-                Wait(robType.coodlown)
+                Wait(robType.coodlown or 10)
                 cooldownList[type] = false
             end)
-            if robType.callPolice then
-                Dispatch(type)
+            if robType.policeChance then
+                if math.random(1, 100) <= robType.policeChance then
+                    Dispatch(type)
+                end
             end
         end
     else
