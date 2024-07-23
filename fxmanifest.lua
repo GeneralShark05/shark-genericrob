@@ -5,7 +5,7 @@ lua54 'yes'
 
 author 'General Shark'
 description 'Go steal.'
-version '1.0'
+version '1.1.0'
 
 dependencies { 'ox_lib', 'ox_target', 'ox_inventory'}
 
