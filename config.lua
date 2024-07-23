@@ -10,17 +10,18 @@ Config.police = { 'police', 'sheriff' }
 Config.stations = {
     ['gumball'] = {
         name = "Gumball Machine",
-        models = { 'prop_gumball_01', 'prop_gumball_02', 'prop_gumball_03' },
-        rewards = {
-            rewardCount = 2, -- How many rewards are being selected?
-            [1] = { name = 'gum', min = 1, max = 5 },
+        models = { 'prop_gumball_01', 'prop_gumball_02', 'prop_gumball_03' }, -- [[table]] of models
+        rewards = {                                                           -- [[table]] or [[array]]
+            rewardCount = 2,                                                  -- How many rewards are being selected?
+            [1] = { name = 'gum', min = 1, max = 5 },                         -- [[table]] - Name of item, minimum reward, max reward
             [2] = { name = 'gum2', min = 1, max = 5 },
+            [3] = { name = 'gum3', min = 1, max = 5 },
         },
-        item = 'screwdriverset',
-        cooldown = 5 * minutes,
-        policeChance = false,
-        minigame = 'lib-skillCheck',
-        difficulty = { 'easy', 'easy' }
+        item = 'screwdriverset',        -- [[string]] - Required item to see target option
+        cooldown = 5 * minutes,         -- [[int]] - Cooldown between theft of this type per player
+        policeChance = false,           -- [[false]] or [[int]] Chance of contacting police
+        minigame = 'lib-skillCheck',    -- [[string]] Minigame as defined in Minigame()
+        difficulty = { 'easy', 'easy' } -- Difficulty for minigame
     },
     ['parking'] = {
         name = "Parking Meter",
