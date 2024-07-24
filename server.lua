@@ -14,3 +14,21 @@ RegisterServerEvent('shark-genericrob:server:reward', function(type, coords)
 		ox_inventory:AddItem(src, Config.stations[type].rewards.name, count)
 	end
 end)
+
+lib.callback.register('shark-genericrob:server:checkcooldown', function(source, coords)
+	for _, v in cooldownPos do
+		if #(coords - v) < 5 then
+			return true
+		end
+	end
+	return false
+end)
+
+RegisterServerEvent('shark-genericrob:server:addcooldown', function(coords, cooldown)
+	cooldownPos[#cooldownPos+1] = coords
+	local target = #cooldownPos
+	Citizen.CreateThread(function()
+		Wait(cooldown)
+		cooldownPos[target] = nil
+	end)
+end)
